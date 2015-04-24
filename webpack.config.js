@@ -14,7 +14,7 @@ module.exports = {
   module: {
     loaders: [
       { test: /\.(png|jpg)$/, loader: 'url?limit=25000' },
-      { test: /\.less$/, loader: 'style!css!less!autoprefixer' },
+      { test: /\.less$/, loader: 'style!css!autoprefixer!less' },
       { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' }
     ]
   },
