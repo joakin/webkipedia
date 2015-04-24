@@ -1,9 +1,16 @@
 .TopBar {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 0.5rem 1rem;
   box-shadow: 0 5px 20px fade(black, 10);
 }
 
 .TopBar>* { margin-left: 10px; }
 .TopBar>*:first-child { margin-left: 0; }
+
+.TopBar>.SearchBox {
+  flex-grow: 1;
+  margin-left: 2rem;
+  max-width: 300px;
+}
