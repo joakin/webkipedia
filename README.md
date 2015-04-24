@@ -21,8 +21,10 @@ Development
 * Components
   * UI components can be found at `lib/ui/`
   * Inside a component folder you will find a `index.js` and
-    a `componentname.less` with the styles of the component.
+    a `component-name.less` with the styles of the component.
 * Styles
   * Use the [SUIT CSS naming conventions](https://github.com/suitcss/suit/blob/master/doc/naming-conventions.md)
   * Styles are placed alongside the component they belong to.
+  * Use the mixins in the Webkipedia component for responsive behavior (mobile first).
+  * Do not use nested Less. Be 100% concrete on the selectors.
 
