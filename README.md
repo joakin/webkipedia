@@ -22,12 +22,10 @@ Development
   * UI components can be found at `lib/ui/`.
   * Inside a component folder you will find a `index.js` and
     a `component-name.less` with the styles of the component.
-  * There are two types of components: Pure views, and Controller views.
-    * Pure views receive props, and render. Nothing else. Try to avoid state in
-      these ones if you can.
-    * Controller views are the views that you see referenced on the router.
-      These views have the responsability of specifying which data is needed to
-      be fetched and massaging data for passing down to the other components.
+  * Top level components (see router.js) receive the full state of the app as
+    a Cursor, and pass down the things that child components need.
+  * Try to make components usually as if they were to live outside the
+    application and in a reusable library on npm for example.
 * Styles
   * Use the [SUIT CSS naming conventions](https://github.com/suitcss/suit/blob/master/doc/naming-conventions.md)
   * Styles are placed alongside the component they belong to.
