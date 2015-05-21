@@ -4,7 +4,7 @@
   "description": "Native web wikipedia app",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --devtool inline --progress --colors --hot",
+    "start": "webpack-dev-server --progress --colors --hot",
     "build": "NODE_ENV=production webpack -p --progress --colors",
     "test": "standard lib/ && tape test/*.js"
   },
@@ -27,6 +27,7 @@
     "babel-loader": "^5.0.0",
     "css-loader": "^0.10.1",
     "file-loader": "^0.8.1",
+    "imports-loader": "^0.6.3",
     "less": "^2.5.0",
     "less-loader": "^2.2.0",
     "standard": "^3.5.0",
@@ -41,12 +42,9 @@
     "browser-jsonp": "^1.0.8",
     "immstruct": "^1.4.0",
     "immutable": "^3.7.2",
-    "imports-loader": "^0.6.3",
-    "localforage": "^1.2.2",
     "lodash": "^3.7.0",
     "omniscient": "^3.1.0",
     "react": "^0.13.1",
-    "react-router": "^0.13.2",
     "xtend": "^4.0.0"
   }
 }
