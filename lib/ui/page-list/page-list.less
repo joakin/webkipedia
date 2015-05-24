@@ -1,7 +1,12 @@
-@import '../webkipedia/mixins.less';
+@import "../webkipedia/mixins";
+
 .PageList {
+  font-size: 2.5rem;
   .larger-than-phablet({
     column-count: 2;
+  });
+  .larger-than-tablet({
+    font-size: 2rem;
   });
   .larger-than-desktop({
     column-count: 3;
