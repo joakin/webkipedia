@@ -40,6 +40,7 @@
   },
   "dependencies": {
     "ampersand-router": "^3.0.2",
+    "array-range": "^1.0.1",
     "browser-jsonp": "^1.0.8",
     "immstruct": "^1.4.0",
     "immutable": "^3.7.2",
