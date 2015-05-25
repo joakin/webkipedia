@@ -2,9 +2,13 @@ var path = require('path')
 var webpack = require('webpack')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 
+var isProduction = process.env.NODE_ENV === 'production'
 var out = 'public'
 var node_modules = path.resolve(__dirname, 'node_modules')
-var pathToReact = path.resolve(node_modules, 'react/dist/react.min.js')
+var pathToReact = path.resolve(
+  node_modules,
+  'react/dist/react' + (isProduction ? '.min' : '') + '.js'
+)
 
 module.exports = {
   entry: {
