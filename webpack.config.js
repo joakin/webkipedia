@@ -25,7 +25,7 @@ module.exports = {
   module: {
     noParse: [pathToReact],
     loaders: [
-      { test: /\.(png|jpg)$/, loader: 'url?limit=25000' },
+      { test: /\.(gif|png|jpg)$/, loader: 'url?limit=25000' },
       { test: /\.less$/, loader: ExtractTextPlugin.extract('style', 'css!autoprefixer!less') },
       { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' }
     ]
