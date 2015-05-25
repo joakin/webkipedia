@@ -1,6 +1,7 @@
 var path = require('path')
 var webpack = require('webpack')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
+
 var out = 'public'
 var node_modules = path.resolve(__dirname, 'node_modules')
 var pathToReact = path.resolve(node_modules, 'react/dist/react.min.js')
@@ -8,8 +9,6 @@ var pathToReact = path.resolve(node_modules, 'react/dist/react.min.js')
 module.exports = {
   entry: {
     app: [
-      'webpack-dev-server/client?http://0.0.0.0:3000',
-      'webpack/hot/only-dev-server',
       './lib/index.js'
     ]
   },
@@ -31,7 +30,6 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new ExtractTextPlugin('style.css', { allChunks: true }),
     new webpack.optimize.DedupePlugin()
