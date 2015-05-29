@@ -1,0 +1,21 @@
+/* Mobile first queries */
+
+.larger-than-mobile(@rules) {
+  @media (min-width: 400px) { @rules(); }
+}
+
+.larger-than-phablet(@rules) {
+  @media (min-width: 550px) { @rules(); }
+}
+
+.larger-than-tablet(@rules) {
+  @media (min-width: 750px) { @rules(); }
+}
+
+.larger-than-desktop(@rules) {
+  @media (min-width: 1000px) { @rules(); }
+}
+
+.larger-than-desktop-hd(@rules) {
+  @media (min-width: 1200px) { @rules(); }
+}
