@@ -5,6 +5,13 @@ An experiment to make a native web application for wikipedia.
 
 Visit [chimeces.com/webkipedia](https://chimeces.com/webkipedia) for a demo.
 
+Warning
+-------
+
+Old JS version (which corresponds to the demo) is on branch
+[hackathon-js-version](https://github.com/joakin/webkipedia/tree/hackathon-js-version).
+The experiment is being rewritten using Clojurescript.
+
 Development
 -----------
 
