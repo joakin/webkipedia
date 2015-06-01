@@ -12,4 +12,5 @@ pom.xml
 .repl
 .nrepl-port
 
+node_modules/
 resources/public/css/
