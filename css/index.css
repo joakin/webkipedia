@@ -892,6 +892,7 @@ body {
   bottom: 0;
   z-index: 0;
   overflow: auto;
+  -webkit-overflow-scrolling: touch;
 }
 .Webkipedia-body {
   padding-top: 2rem;
