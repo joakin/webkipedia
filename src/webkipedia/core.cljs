@@ -2,7 +2,8 @@
     (:require [reagent.core :as reagent]
               [webkipedia.state :refer [state]]
               [webkipedia.router :as router]
-              [webkipedia.ui.webkipedia :refer [webkipedia]]))
+              [webkipedia.ui.webkipedia :refer [webkipedia]]
+              [webkipedia.scratch]))
 
 (enable-console-print!)
 
