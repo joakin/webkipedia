@@ -1,18 +1,15 @@
 (ns webkipedia.ui.menu-container
-    (:require [webkipedia.state :refer [state]]
-              [webkipedia.ui.menu :refer [menu]]))
-
-(defn dismiss-menu []
-  (swap! state assoc-in [:ui :menu] false))
+    (:require [webkipedia.state.menu :refer [menu menu-items hide-menu!]]
+              [webkipedia.ui.menu :as m]))
 
 (defn menu-container [children]
   [:div.MenuContainer
-   {:className (if (get-in @state [:ui :menu]) "is-open" "")}
+   {:className (if (:visible @menu) "is-open" "")}
 
-   [menu (:menu @state)]
+   [m/menu menu-items]
 
    [:div.MenuContainer-overlay
-    {:onTouchStart dismiss-menu :onClick dismiss-menu}]
+    {:onTouchStart hide-menu! :onClick hide-menu!}]
 
    children])
 
