@@ -5,4 +5,4 @@
    [:h1 "Woops. Nothing here, sorry"]
    [:h2
     "Try going to the"
-    [:a {:href '#/'} "home page"]]])
+    [:a {:href "#/"} "home page"]]])
