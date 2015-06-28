@@ -1,3 +1,5 @@
+// PageListItem
+
 .PageListItem {
   display: flex;
   align-items: center;
@@ -12,4 +14,26 @@
   white-space: nowrap;
   overflow: hidden;
   text-decoration: none;
+}
+
+// PageList
+
+@import "./mixins";
+
+.PageList {
+  font-size: 2.5rem;
+  .larger-than-tablet({
+    font-size: 2rem;
+    column-count: 2;
+  });
+  .larger-than-desktop({
+    column-count: 3;
+  });
+  .larger-than-desktop-hd({
+    column-count: 4;
+  });
+}
+.PageList>.PageList-item-wrapper {
+  display: inline-block;
+  width: 100%;
 }
