@@ -10,8 +10,8 @@
      [:span.PageListItem-title title]]))
 
 (defn page-list [items]
-  [:.PageList
+  [:div.PageList
    (for [item items]
-     [:.PageList-item-wrapper
+     [:div.PageList-item-wrapper
       {:key (:title item)}
       [page-list-item item]])])
