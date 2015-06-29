@@ -988,3 +988,65 @@ body {
   color: inherit;
   text-decoration: none;
 }
+.LeadImage {
+  height: 200px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  margin-bottom: 1em;
+}
+.PageHeader {
+  margin-bottom: 2em;
+}
+.PageHeader-title {
+  margin-bottom: 0;
+}
+.PageHeader-description {
+  color: #aaaaaa;
+}
+.Thumbnail {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50%;
+  min-width: 60px;
+  height: 60px;
+  background-color: #eeeeee;
+}
+.PageListItem {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.PageListItem > .Thumbnail {
+  margin-right: 20px;
+  border-radius: 40px;
+}
+.PageListItem-title {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-decoration: none;
+}
+.PageList {
+  font-size: 2.5rem;
+}
+@media (min-width: 750px) {
+  .PageList {
+    font-size: 2rem;
+    column-count: 2;
+  }
+}
+@media (min-width: 1000px) {
+  .PageList {
+    column-count: 3;
+  }
+}
+@media (min-width: 1200px) {
+  .PageList {
+    column-count: 4;
+  }
+}
+.PageList > .PageList-item-wrapper {
+  display: inline-block;
+  width: 100%;
+}
