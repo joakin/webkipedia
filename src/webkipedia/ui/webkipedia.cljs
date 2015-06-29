@@ -1,12 +1,14 @@
 (ns webkipedia.ui.webkipedia
     (:require [webkipedia.ui.top-bar :refer [top-bar]]
               [webkipedia.ui.menu-container :refer [menu-container]]
-              [webkipedia.state.route :refer [current-route]]))
+              [webkipedia.state.route :refer [current-route]]
+
+              [webkipedia.ui.page :refer [page]]))
 
 (def content-components
   {:home    [:div "Home"]
    :search  [:div "Search"]
-   :page    [:div "Page"]
+   :page    [page]
    :explore [:div "Explore"]})
 
 (def not-found [:div "Not found"])

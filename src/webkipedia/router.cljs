@@ -3,7 +3,8 @@
             [goog.events :as events]
             [goog.history.EventType :as EventType]
             [webkipedia.state.route :refer [set-route!]]
-            [webkipedia.state.menu :refer [hide-menu!]])
+            [webkipedia.state.menu :refer [hide-menu!]]
+            [webkipedia.state.page :as page])
   (:import goog.History))
 
 (secretary/set-config! :prefix "#")
@@ -30,9 +31,12 @@
   (println (str "search" q)))
 
 ; page
-(defroute "/wiki/*" [title]
+(defroute "/wiki/:title" [title]
   (update-route! :page)
-  (println (str "page " title)))
+  (println (str "page " title))
+  (page/set-title! title)
+  (page/load-page!)
+  )
 
 ; explore
 (defroute #"/explore(/.*)?" [buster]
