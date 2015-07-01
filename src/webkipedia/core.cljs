@@ -6,15 +6,15 @@
 
 (enable-console-print!)
 
-(defn render []
+(defn render! []
   (reagent/render-component [webkipedia]
                             (.-body js/document)))
 
-(render)
+(render!)
 (router/init)
 
 (defn on-js-reload []
   ;; optionally touch your app-state to force rerendering depending on
   ;; your application
-  (render)
+  (render!)
 )
