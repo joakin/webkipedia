@@ -4,7 +4,7 @@
 
 (defn menu-container [children]
   [:div.MenuContainer
-   {:className (if (:visible @menu) "is-open" "")}
+   {:class (if (:visible @menu) "is-open" "")}
 
    [m/menu menu-items]
 
