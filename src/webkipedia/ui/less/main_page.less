@@ -1,0 +1,27 @@
+@import './mixins';
+
+.MainPage {
+  padding-top: 20%;
+  transition: padding-top 0.2s;
+}
+.MainPage.is-searching { padding-top: 0; }
+.MainPage-header {
+  text-align: center;
+  transition: max-height 0.5s, opacity 0.5s;
+  max-height: 500px;
+  opacity: 1;
+  .MainPage.is-searching & {
+    max-height: 0px;
+    opacity: 0;
+  }
+  .larger-than-phablet({
+    max-height: 500px;
+    opacity: 1;
+  });
+}
+.MainPage>.SearchBox {
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+  margin-bottom: 2rem;
+}

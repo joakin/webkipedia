@@ -3,11 +3,12 @@
               [webkipedia.ui.menu-container :refer [menu-container]]
               [webkipedia.state.route :refer [current-route]]
 
+              [webkipedia.ui.main-page :refer [main-page]]
               [webkipedia.ui.page :refer [page]]))
 
 (def content-components
-  {:home    [:div "Home"]
-   :search  [:div "Search"]
+  {:home    [main-page]
+   :search  [main-page]
    :page    [page]
    :explore [:div "Explore"]})
 
