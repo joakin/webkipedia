@@ -1,6 +1,5 @@
 (ns webkipedia.core
     (:require [reagent.core :as reagent]
-              [webkipedia.state :refer [state]]
               [webkipedia.router :as router]
               [webkipedia.ui.webkipedia :refer [webkipedia]]
               [webkipedia.scratch]))
@@ -8,7 +7,7 @@
 (enable-console-print!)
 
 (defn render []
-  (reagent/render-component [webkipedia state]
+  (reagent/render-component [webkipedia]
                             (.-body js/document)))
 
 (render)
