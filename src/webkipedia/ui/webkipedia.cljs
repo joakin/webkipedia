@@ -1,10 +1,10 @@
 (ns webkipedia.ui.webkipedia
-    (:require [webkipedia.ui.top-bar :refer [top-bar]]
-              [webkipedia.ui.menu-container :refer [menu-container]]
-              [webkipedia.state.route :refer [current-route]]
+  (:require [webkipedia.ui.top-bar :refer [top-bar]]
+            [webkipedia.ui.menu-container :refer [menu-container]]
+            [webkipedia.state.route :refer [current-route]]
 
-              [webkipedia.ui.main-page :refer [main-page]]
-              [webkipedia.ui.page :refer [page]]))
+            [webkipedia.ui.main-page :refer [main-page]]
+            [webkipedia.ui.page :refer [page]]))
 
 (def content-components
   {:home    [#'main-page]
