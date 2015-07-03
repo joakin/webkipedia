@@ -7,9 +7,9 @@
               [webkipedia.ui.page :refer [page]]))
 
 (def content-components
-  {:home    [main-page]
-   :search  [main-page]
-   :page    [page]
+  {:home    [#'main-page]
+   :search  [#'main-page]
+   :page    [#'page]
    :explore [:div "Explore"]})
 
 (def not-found [:div "Not found"])
