@@ -9,3 +9,6 @@
    :results {:query nil :list []}})
 
 (def search (atom initial-search))
+
+(defn set-query! [query]
+  (swap! search assoc :query query))

@@ -4,21 +4,30 @@
             [goog.history.EventType :as EventType]
             [webkipedia.state.route :refer [set-route!]]
             [webkipedia.state.menu :refer [hide-menu!]]
-            [webkipedia.state.page :as page])
+            [webkipedia.state.page :as page]
+            [webkipedia.state.search :as search])
   (:import goog.History))
 
 (secretary/set-config! :prefix "#")
 
-(defn init []
-  (let [h (History.)]
-    (goog.events/listen
-      h EventType/NAVIGATE #(secretary/dispatch! (.-token %)))
-    (doto h (.setEnabled true))))
+(def history (History.))
 
-;; Route definitions
+(defn init []
+  (goog.events/listen
+    history EventType/NAVIGATE #(secretary/dispatch! (.-token %)))
+  (.setEnabled history true))
+
+(defn navigate! [url]
+  (.setToken history url))
+
+(defn replace! [url]
+  (.replaceToken history url))
+
 (defn update-route! [route]
   (set-route! route)
   (hide-menu!))
+
+;; Route definitions
 
 ; home
 (defroute "/" []
@@ -26,9 +35,9 @@
   (println "home"))
 
 ; search
-(defroute #"/search(/.+)?/" [q]
+(defroute #"/search(/(.+))?/" [_ q]
   (update-route! :search)
-  (println (str "search" q)))
+  (search/set-query! q))
 
 ; page
 (defroute "/wiki/:title" [title]
