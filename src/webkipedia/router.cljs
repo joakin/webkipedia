@@ -41,7 +41,8 @@
     (replace! "/") ; If there's no query, show home
     (do
       (update-route! :search)
-      (search/set-query! q))))
+      (search/set-query! q)
+      (search/load-search!))))
 
 ; page
 (defroute "/wiki/:title" [title]
