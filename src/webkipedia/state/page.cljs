@@ -6,7 +6,7 @@
             [webkipedia.api.related :refer [related-pages]]
             ))
 
-(def page
+(defonce page
   (atom {:title nil
          :content nil}))
 

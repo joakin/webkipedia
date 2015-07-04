@@ -1,7 +1,7 @@
 (ns webkipedia.state.menu
   (:require [reagent.core :as reagent :refer [atom]]))
 
-(def menu (atom {:visible false}))
+(defonce menu (atom {:visible false}))
 
 (defn show-menu! []
   (swap! menu assoc :visible true))
