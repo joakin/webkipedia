@@ -1071,6 +1071,7 @@ body {
 .MainPage.is-searching .MainPage-header {
   max-height: 0px;
   opacity: 0;
+  overflow: hidden;
 }
 @media (min-width: 550px) {
   .MainPage-header {
