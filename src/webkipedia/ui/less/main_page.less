@@ -13,6 +13,7 @@
   .MainPage.is-searching & {
     max-height: 0px;
     opacity: 0;
+    overflow: hidden; // Needed to clip the div, otherwise overlaps with input.
   }
   .larger-than-phablet({
     max-height: 500px;
