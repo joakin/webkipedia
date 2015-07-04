@@ -12,3 +12,6 @@
 
 (defn set-query! [query]
   (swap! search assoc :query query))
+
+(defn reset-search! []
+  (reset! search initial-search))

@@ -32,12 +32,16 @@
 ; home
 (defroute "/" []
   (update-route! :home)
+  (search/reset-search!)
   (println "home"))
 
 ; search
-(defroute #"/search(/(.+))?/" [_ q]
-  (update-route! :search)
-  (search/set-query! q))
+(defroute #"/search(/(.*))?/" [_ q]
+  (if (= q "")
+    (replace! "/") ; If there's no query, show home
+    (do
+      (update-route! :search)
+      (search/set-query! q))))
 
 ; page
 (defroute "/wiki/:title" [title]
