@@ -6,19 +6,16 @@
             [webkipedia.ui.main-page :refer [main-page]]
             [webkipedia.ui.page :refer [page]]))
 
-(def content-components
-  {:home    [#'main-page]
-   :search  [#'main-page]
-   :page    [#'page]
-   :explore [:div "Explore"]})
-
 (def not-found [:div "Not found"])
-
-(defn get-content [route]
-  (get content-components route not-found))
 
 (defn webkipedia []
   [menu-container
    [:div.Webkipedia
     [top-bar]
-    [:div.Webkipedia-body.container (get-content @current-route)]]])
+    [:div.Webkipedia-body.container
+     (case @current-route
+       (:home :search) [main-page]
+       :page [page]
+       :explore [:div "Explore"]
+       not-found)
+     ]]])
