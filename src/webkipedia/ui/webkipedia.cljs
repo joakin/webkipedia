@@ -4,7 +4,8 @@
             [webkipedia.state.route :refer [current-route]]
 
             [webkipedia.ui.main-page :refer [main-page]]
-            [webkipedia.ui.page :refer [page]]))
+            [webkipedia.ui.page :refer [page]]
+            [webkipedia.ui.explore :refer [explore]]))
 
 (def not-found [:div "Not found"])
 
@@ -16,6 +17,6 @@
      (case @current-route
        (:home :search) [main-page]
        :page [page]
-       :explore [:div "Explore"]
+       :explore [explore]
        not-found)
      ]]])
