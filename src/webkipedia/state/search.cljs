@@ -33,5 +33,4 @@
           ; When finished, only set if the results query is the current query
           (when (= (:query search-results) (:query @search))
             (set-results! search-results))))
-      )
-  ))
+      )))
