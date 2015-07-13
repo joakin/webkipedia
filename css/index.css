@@ -867,69 +867,20 @@ there.
 /* Larger than tablet */
 /* Larger than desktop */
 /* Larger than Desktop HD */
-html {
-  box-sizing: border-box;
-  font-family: Raleway, sans-serif;
+.Menu {
+  background-color: #333333;
+  color: #eeeeee;
+  text-shadow: 0 2px black, 0 2px 5px black;
 }
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
-}
-html,
-body {
-  width: 100%;
-  height: 100%;
+.MenuItem {
+  list-style-type: none;
   margin: 0;
-  padding: 0;
 }
-.Webkipedia {
-  background-color: white;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 0;
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
-}
-.Webkipedia-body {
-  padding-top: 2rem;
-  transition: width 0.3s, padding 0.3s;
-}
-.TopBar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.5rem 1rem;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-}
-.TopBar > .ButtonLink {
-  margin-bottom: 0;
-}
-.TopBar > * {
-  margin-left: 10px;
-}
-.TopBar > *:first-child {
-  margin-left: 0;
-}
-/* Mobile first queries */
-.Logo {
-  font-size: 20px;
-  transition: font-size 0.3s;
+.MenuItem > a {
+  display: block;
+  padding: 0.6em 1em;
+  color: inherit;
   text-decoration: none;
-  color: black;
-}
-@media (min-width: 400px) {
-  .Logo {
-    font-size: 30px;
-  }
-}
-@media (min-width: 1000px) {
-  .Logo {
-    font-size: 40px;
-  }
 }
 .MenuContainer {
   perspective: 800px;
@@ -973,37 +924,78 @@ body {
 .MenuContainer.is-open > .Webkipedia {
   transform: translate3d(-60%, 0, 0) rotate3d(0, 1, 0, -25deg);
 }
-.Menu {
-  background-color: #333333;
-  color: #eeeeee;
-  text-shadow: 0 2px black, 0 2px 5px black;
-}
-.MenuItem {
-  list-style-type: none;
-  margin: 0;
-}
-.MenuItem > a {
-  display: block;
-  padding: 0.6em 1em;
-  color: inherit;
+/* Mobile first queries */
+.Logo {
+  font-size: 20px;
+  transition: font-size 0.3s;
   text-decoration: none;
+  color: black;
 }
-.LeadImage {
-  height: 200px;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: 50%;
-  margin-bottom: 1em;
-  display: block;
+@media (min-width: 400px) {
+  .Logo {
+    font-size: 30px;
+  }
 }
-.PageHeader {
-  margin-bottom: 2em;
+@media (min-width: 1000px) {
+  .Logo {
+    font-size: 40px;
+  }
 }
-.PageHeader-title {
+.TopBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+.TopBar > .ButtonLink {
   margin-bottom: 0;
 }
-.PageHeader-description {
-  color: #aaaaaa;
+.TopBar > * {
+  margin-left: 10px;
+}
+.TopBar > *:first-child {
+  margin-left: 0;
+}
+html {
+  box-sizing: border-box;
+  font-family: Raleway, sans-serif;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+.Webkipedia {
+  background-color: white;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.Webkipedia-body {
+  padding-top: 2rem;
+  transition: width 0.3s, padding 0.3s;
+}
+.SearchBox-form,
+.SearchBox-input {
+  margin: 0;
+  width: 100%;
+}
+.Loading {
+  background: transparent url('../images/loading.gif') no-repeat 50% 50%;
+  padding: 2em;
 }
 .Thumbnail {
   background-repeat: no-repeat;
@@ -1051,11 +1043,6 @@ body {
   display: inline-block;
   width: 100%;
 }
-.SearchBox-form,
-.SearchBox-input {
-  margin: 0;
-  width: 100%;
-}
 .MainPage {
   padding-top: 20%;
   transition: padding-top 0.2s;
@@ -1086,7 +1073,20 @@ body {
   margin: 0 auto;
   margin-bottom: 2rem;
 }
-.Loading {
-  background: transparent url('../images/loading.gif') no-repeat 50% 50%;
-  padding: 2em;
+.LeadImage {
+  height: 200px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  margin-bottom: 1em;
+  display: block;
+}
+.PageHeader {
+  margin-bottom: 2em;
+}
+.PageHeader-title {
+  margin-bottom: 0;
+}
+.PageHeader-description {
+  color: #aaaaaa;
 }
