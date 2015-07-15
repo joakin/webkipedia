@@ -5,9 +5,7 @@
             [webkipedia.state.route :refer [set-route!]]
             [webkipedia.dispatcher :refer [dispatch]]
             [webkipedia.state.page :as page]
-            [webkipedia.state.search :as search]
-            [webkipedia.state.explore :as explore]
-            )
+            [webkipedia.state.search :as search])
   (:import goog.History))
 
 (secretary/set-config! :prefix "#")
@@ -58,7 +56,5 @@
 (defroute #"/explore(/.*)?" [buster]
   (update-route! :explore)
   (println (str "explore" buster))
-  (explore/reset-random!)
-  (explore/load!)
-  )
+  (dispatch :random/load))
 

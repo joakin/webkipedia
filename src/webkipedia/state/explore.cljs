@@ -2,10 +2,10 @@
   (:require-macros [cljs.core.async.macros :refer [go]])
   (:require [reagent.core :as reagent :refer [atom]]
             [cljs.core.async :refer [<!]]
-            [webkipedia.api.random :refer [random]]))
+            [webkipedia.api.random :refer [random]]
+            [webkipedia.dispatcher :refer [register]]))
 
-(defonce explore
-  (atom {:random []}))
+(defonce explore (atom {:random []}))
 
 (defn set-random! [rs]
   (swap! explore assoc :random rs))
@@ -20,3 +20,10 @@
           random-pages (:body result)]
       (println random-pages)
       (set-random! random-pages))))
+
+(defn dispatch [state action payload]
+  (case action
+    :random/load (do reset-random! (load!) state)
+    state))
+
+(register :random dispatch explore)
