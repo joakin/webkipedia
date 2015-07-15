@@ -2,6 +2,7 @@
     (:require [reagent.core :as reagent]
               [webkipedia.router :as router]
               [webkipedia.ui.webkipedia :refer [webkipedia]]
+              [webkipedia.db :as db]
               [webkipedia.scratch]))
 
 (enable-console-print!)
@@ -10,6 +11,7 @@
   (reagent/render-component [webkipedia]
                             (.-body js/document)))
 
+(db/init!)
 (render!)
 (router/init)
 
