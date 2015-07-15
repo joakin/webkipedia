@@ -579,27 +579,6 @@ h6 {
   line-height: 1.6;
   letter-spacing: 0;
 }
-/* Larger than phablet */
-@media (min-width: 550px) {
-  h1 {
-    font-size: 5.0rem;
-  }
-  h2 {
-    font-size: 4.2rem;
-  }
-  h3 {
-    font-size: 3.6rem;
-  }
-  h4 {
-    font-size: 3.0rem;
-  }
-  h5 {
-    font-size: 2.4rem;
-  }
-  h6 {
-    font-size: 1.5rem;
-  }
-}
 p {
   margin-top: 0;
 }
@@ -1074,19 +1053,64 @@ body {
   margin-bottom: 2rem;
 }
 .LeadImage {
+  position: relative;
+  overflow: hidden;
+  max-width: 100%;
+  margin: 0em auto 1em auto;
+  border-radius: 50%;
   height: 200px;
+  width: 200px;
+  min-height: 200px;
+  min-width: 200px;
+}
+@media (min-width: 750px) {
+  .LeadImage {
+    float: left;
+    margin: 0 1.5em 1em 0;
+  }
+}
+.LeadImage-horizontal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50%;
-  margin-bottom: 1em;
-  display: block;
+}
+.is-vertical .LeadImage-horizontal {
+  -webkit-filter: blur(12px);
+  filter: blur(12px);
+}
+.LeadImage-vertical {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: auto 110%;
+  background-repeat: no-repeat;
+  background-position: 50%;
 }
 .PageHeader {
-  margin-bottom: 2em;
+  margin-bottom: 1em;
 }
 .PageHeader-title {
   margin-bottom: 0;
 }
 .PageHeader-description {
   color: #aaaaaa;
+}
+@media (min-width: 750px) {
+  .Page-lead {
+    overflow: hidden;
+    display: flex;
+    margin-bottom: 1em;
+  }
+}
+.Page-lead > * {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
