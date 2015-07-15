@@ -2,8 +2,7 @@
   (:require [secretary.core :as secretary :refer-macros [defroute]]
             [goog.events :as events]
             [goog.history.EventType :as EventType]
-            [webkipedia.dispatcher :refer [dispatch]]
-            [webkipedia.state.search :as search])
+            [webkipedia.dispatcher :refer [dispatch]])
   (:import goog.History))
 
 (secretary/set-config! :prefix "#")
@@ -30,7 +29,7 @@
 ; home
 (defroute "/" []
   (update-route! :home)
-  (search/reset-search!)
+  (dispatch :search/reset)
   (println "home"))
 
 ; search
@@ -39,8 +38,8 @@
     (replace! "/") ; If there's no query, show home
     (do
       (update-route! :search)
-      (search/set-query! q)
-      (search/load-search!))))
+      (dispatch :search/query q)
+      )))
 
 ; page
 (defroute "/wiki/:title" [title]

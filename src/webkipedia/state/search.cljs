@@ -3,6 +3,7 @@
   (:require [reagent.core :as reagent :refer [atom]]
             [cljs.core.async :refer [<!]]
             [webkipedia.api.search :refer [search-pages]]
+            [webkipedia.dispatcher :refer [register]]
             ))
 
 (def initial-search
@@ -11,22 +12,18 @@
 
 (defonce search (atom initial-search))
 
-(defn set-query! [query]
-  (swap! search assoc :query query))
+(defn set-query [search query]
+  (assoc search :query query))
 
 (defn set-results! [results]
   (swap! search assoc :results results))
 
-(defn reset-search! []
-  (reset! search initial-search))
-
-(defn load-search! []
-  (let [q (:query @search)
-        results-query (get-in @search [:results :query])]
-    (if (not= q results-query)
+(defn load-search! [query]
+  (let [results-query (get-in @search [:results :query])]
+    (if (not= query results-query)
       ; If the results are not from the current query, search
       (go
-        (let [result (<! (search-pages q))
+        (let [result (<! (search-pages query))
               success (:success result)
               search-results (:body result)]
           (println search-results)
@@ -34,3 +31,16 @@
           (when (= (:query search-results) (:query @search))
             (set-results! search-results))))
       )))
+
+(defn dispatch [state action payload]
+  (case action
+    :search/query
+    (let [query payload
+          new-state (set-query state query)]
+      (load-search! query)
+      new-state)
+
+    :search/reset initial-search
+    state))
+
+(register :search dispatch search)
