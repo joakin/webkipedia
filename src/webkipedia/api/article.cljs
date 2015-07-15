@@ -9,7 +9,7 @@
              :prop (to-props ["extracts" "pageimages"])
              :exintro ""
              :piprop (to-props ["thumbnail" "name" "original"])
-             :pithumbsize 500
+             :pithumbsize 200
              })
 
 (defn clean-and-add-title [title body]
