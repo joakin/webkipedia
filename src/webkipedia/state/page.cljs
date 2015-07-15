@@ -4,14 +4,15 @@
             [cljs.core.async :refer [<!]]
             [webkipedia.api.article :as article]
             [webkipedia.api.related :refer [related-pages]]
+            [webkipedia.dispatcher :refer [register]]
             ))
 
 (defonce page
   (atom {:title nil
          :content nil}))
 
-(defn set-title! [title]
-  (swap! page assoc :title title))
+(defn set-title [page title]
+  (assoc page :title title))
 
 (defn set-content! [content]
   (swap! page assoc :content content))
@@ -27,17 +28,15 @@
 
 (defn content-loaded?
   "Returns true if the current title and the title of the loaded content is the same"
-  [p]
-  (let [content (:content p)
-        title (:title p)]
+  [page]
+  (let [content (:content page)
+        title (:title page)]
     (and (not (nil? title))
          (= title (:title content)))))
 
-(defn load-page! []
-  (let [p @page
-        content (:content p)
-        title (:title p)
-        not-loaded? (not (content-loaded? p))]
+(defn load-page! [title current-page]
+  (let [content (:content current-page)
+        not-loaded? (not (content-loaded? current-page))]
     (when not-loaded?
       ; Clear the content while we request it
       (reset-content!)
@@ -61,3 +60,14 @@
           (if (= (:title related) (:title @page))
             (set-related! related))))
       )))
+
+(defn dispatch [state action payload]
+  (case action
+    :page/load
+    (let [title payload
+          new-state (set-title state title)]
+      (load-page! title new-state)
+      new-state)
+    state))
+
+(register :page dispatch page)

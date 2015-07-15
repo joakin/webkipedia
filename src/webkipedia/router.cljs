@@ -4,7 +4,6 @@
             [goog.history.EventType :as EventType]
             [webkipedia.state.route :refer [set-route!]]
             [webkipedia.dispatcher :refer [dispatch]]
-            [webkipedia.state.page :as page]
             [webkipedia.state.search :as search])
   (:import goog.History))
 
@@ -48,9 +47,7 @@
 (defroute "/wiki/:title" [title]
   (update-route! :page)
   (println (str "page " title))
-  (page/set-title! title)
-  (page/load-page!)
-  )
+  (dispatch :page/load title))
 
 ; explore
 (defroute #"/explore(/.*)?" [buster]
