@@ -1,5 +1,5 @@
 (ns webkipedia.api.search
-  (:require [webkipedia.api.core :refer [fetch to-props if-successful memoize-async-db]]
+  (:require [webkipedia.api.core :refer [fetch-with-transform to-props memoize-async-db]]
             [clojure.string :refer [replace]]
             [cljs.core.async :as async]
             ))
@@ -34,6 +34,6 @@
   (memoize-async-db
     {:prefix "search-results" :refresh (* 5 60 1000)}
     (fn [query]
-      (async/map
-        (if-successful (partial clean-results query))
-        [(fetch (assoc params :gpssearch query :pssearch query))]))))
+      (fetch-with-transform
+        (partial clean-results query)
+        (assoc params :gpssearch query :pssearch query)))))

@@ -1,5 +1,5 @@
 (ns webkipedia.api.main-page
-  (:require [webkipedia.api.core :refer [fetch to-props if-successful]]
+  (:require [webkipedia.api.core :refer [fetch-with-transform to-props]]
             [cljs.core.async :as async]
             ))
 
@@ -66,7 +66,5 @@
              })
 
 (defn main-page []
-  (async/map
-    (if-successful parse-response)
-    [(fetch params)]))
+  (fetch-with-transform parse-response params))
 

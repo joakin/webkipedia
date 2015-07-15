@@ -1,5 +1,5 @@
 (ns webkipedia.api.random
-  (:require [webkipedia.api.core :refer [fetch to-props if-successful]]
+  (:require [webkipedia.api.core :refer [fetch-with-transform to-props]]
             [cljs.core.async :as async]
             ))
 
@@ -24,5 +24,5 @@
 (defn random
   "Fetch random articles from the api.
   Api is limited to 10 articles each time."
-  [] (async/map (if-successful clean-results)
-                [(fetch params)]))
+  []
+  (fetch-with-transform clean-results params))

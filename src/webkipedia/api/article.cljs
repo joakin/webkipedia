@@ -1,5 +1,5 @@
 (ns webkipedia.api.article
-  (:require [webkipedia.api.core :refer [fetch to-props if-successful memoize-async-db]]
+  (:require [webkipedia.api.core :refer [fetch-with-transform to-props memoize-async-db]]
             [cljs.core.async :refer [map]]
             [clojure.string :refer [replace]]
             ))
@@ -24,8 +24,8 @@
     {:prefix "articles" :refresh (* 15 60 1000)}
     (fn [title]
       (let [display-title (replace title "_" " ")]
-        (map
-          (if-successful (partial clean-and-add-title title))
-          [(fetch (assoc params
-                         :titles display-title))])))))
+        (fetch-with-transform
+          (partial clean-and-add-title title)
+          (assoc params :titles display-title))
+        ))))
 

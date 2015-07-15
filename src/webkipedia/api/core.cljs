@@ -1,7 +1,7 @@
 (ns webkipedia.api.core
   (:require-macros [cljs.core.async.macros :refer [go]])
   (:require [cljs-http.client :as http]
-            [cljs.core.async :refer [<! >! put! chan]]
+            [cljs.core.async :refer [map <! >! put! chan]]
             [clojure.string :refer [join]]
             [webkipedia.db :refer [db-get db-set]]))
 
@@ -58,6 +58,14 @@
               (db-set key res)
               (>! out-chan res)))
           out-chan)))))
+
+(defn fetch-with-transform
+  "Perform a fetch with the params applying the transform-fn to the body of the
+  response if it was succesful"
+  [transform-fn params]
+  (map
+    (if-successful transform-fn)
+    [(fetch params)]))
 
 (comment
   (go
