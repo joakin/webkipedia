@@ -20,8 +20,9 @@
         extract (:extract content)]
 
     [:div.Page
-     (if thumb (lead-image thumb) nil)
-     [page-header {:title title :description description}]
+     [:div.Page-lead
+      (if thumb (lead-image thumb) nil)
+      [page-header {:title title :description description}]]
      [:div.Page-content
       {:dangerouslySetInnerHTML {:__html extract}}]
      ; [parsoid-page content]

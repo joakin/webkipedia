@@ -1,8 +1,47 @@
+@import "./mixins";
+
+.blur(@size: 12px) {
+  -webkit-filter: blur(@size);
+  filter: blur(@size);
+}
+
+.size(@size) {
+  height: @size;
+  width: @size;
+  min-height: @size;
+  min-width: @size;
+}
+
 .LeadImage {
-  height: 200px;
+  position: relative;
+  overflow: hidden;
+  max-width: 100%;
+  margin: 0em auto 1em auto;
+  border-radius: 50%;
+  .size(200px);
+
+  @whitespace-factor: 0.7;
+
+  .larger-than-tablet({
+    float: left;
+    margin: 0 1.5em 1em 0;
+  });
+}
+
+.LeadImage-horizontal {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50%;
-  margin-bottom: 1em;
-  display: block;
+  .is-vertical & {
+    .blur();
+  }
+}
+.LeadImage-vertical {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-size: auto 110%;
+  background-repeat: no-repeat;
+  background-position: 50%;
 }

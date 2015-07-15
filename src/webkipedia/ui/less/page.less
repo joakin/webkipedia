@@ -1,4 +1,19 @@
+@import "./mixins";
+
 @import "./lead_image";
 @import "./page_header";
 @import "./loading";
 @import "./related_pages";
+
+.Page-lead {
+  .larger-than-tablet({
+    overflow: hidden;
+    display: flex;
+    margin-bottom: 1em;
+  });
+}
+.Page-lead>* {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
