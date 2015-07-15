@@ -2,7 +2,6 @@
   (:require [secretary.core :as secretary :refer-macros [defroute]]
             [goog.events :as events]
             [goog.history.EventType :as EventType]
-            [webkipedia.state.route :refer [set-route!]]
             [webkipedia.dispatcher :refer [dispatch]]
             [webkipedia.state.search :as search])
   (:import goog.History))
@@ -23,7 +22,7 @@
   (.replaceToken history url))
 
 (defn update-route! [route]
-  (set-route! route)
+  (dispatch :route/new route)
   (dispatch :menu/hide))
 
 ;; Route definitions
