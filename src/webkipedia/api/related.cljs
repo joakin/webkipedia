@@ -1,5 +1,5 @@
 (ns webkipedia.api.related
-  (:require [webkipedia.api.core :refer [fetch to-props if-successful]]
+  (:require [webkipedia.api.core :refer [fetch to-props if-successful memoize-async-db]]
             [clojure.string :refer [replace]]
             [cljs.core.async :as async]
             ))
@@ -22,7 +22,10 @@
 (defn clean-results [title body]
   {:title title :list (vec (vals (get-in body [:query :pages] {})))})
 
-(defn related-pages [title]
-  (let [display-title (replace title "_" " ")]
-    (async/map (if-successful (partial clean-results title))
-               [(fetch (assoc params :ggsgpexcludedtitle display-title))])))
+(def related-pages
+  (memoize-async-db
+    {:prefix "related-pages" :refresh (* 15 60 1000)}
+    (fn [title]
+      (let [display-title (replace title "_" " ")]
+        (async/map (if-successful (partial clean-results title))
+                   [(fetch (assoc params :ggsgpexcludedtitle display-title))])))))
