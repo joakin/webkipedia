@@ -7,8 +7,7 @@
         has-pages? (> (count pages) 0)
         show? (or (not loaded?) has-pages?)]
     [:div.RelatedPages
-     (if show?
-       [:h5 "Related pages"]
-       (if loaded?
-         [page-list pages]
-         [loading]))]))
+     (if show? [:h5 "Related pages"])
+     (if (and show? loaded?)
+       [page-list pages]
+       [loading])]))
