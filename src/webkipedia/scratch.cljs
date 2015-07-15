@@ -35,3 +35,7 @@
 (defn test-search [query]
   (go
     (println (<! (search-pages query)))))
+
+(defn test-parsoid [title]
+  (go
+    (println (<! (article/parsoid-article title)))))

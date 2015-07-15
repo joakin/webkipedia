@@ -3,6 +3,7 @@
             [webkipedia.ui.page-header :refer [page-header]]
             [webkipedia.ui.lead-image :refer [lead-image]]
             [webkipedia.ui.loading :refer [loading]]
+            [webkipedia.ui.parsoid-page :refer [parsoid-page]]
             [webkipedia.state.page :as ps]
             ))
 
@@ -23,5 +24,6 @@
      [page-header {:title title :description description}]
      [:div.Page-content
       {:dangerouslySetInnerHTML {:__html extract}}]
+     ; [parsoid-page content]
      (if loading? [loading] nil)
      [related-pages (:list related)]]))

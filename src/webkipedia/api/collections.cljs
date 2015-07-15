@@ -1,5 +1,5 @@
 (ns webkipedia.api.collections
-  (:require [webkipedia.api.core :refer [fetch to-props]]
+  (:require [webkipedia.api.core :refer [fetch-jsonp to-props]]
             ))
 
 (def params {:action "query"
@@ -10,5 +10,5 @@
                         "image" "count" "updated" "owner"])
             })
 
-(defn all-public [] (fetch params))
+(defn all-public [] (fetch-jsonp params))
 

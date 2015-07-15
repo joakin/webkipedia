@@ -6,7 +6,8 @@
             [webkipedia.db :refer [db-get db-set]]))
 
 (def hosts
-  {:en "http://en.wikipedia.org/w/api.php"})
+  {:en "http://en.wikipedia.org/w/api.php"
+   :en-restbase "https://en.wikipedia.org/api/rest_v1/page/html/"})
 
 (def host :en)
 
@@ -14,7 +15,7 @@
   {:query-params {:format "json"}
    :timeout 10000})
 
-(defn fetch [data]
+(defn fetch-jsonp [data]
   (http/jsonp (host hosts)
               (merge-with merge
                           {:query-params data}
@@ -59,15 +60,22 @@
               (>! out-chan res)))
           out-chan)))))
 
+(defn transform-successful
+  "Transform a channel response with a function if it was successful"
+  [transform-fn ch]
+  (map
+    (if-successful transform-fn)
+    [ch]))
+
 (defn fetch-with-transform
   "Perform a fetch with the params applying the transform-fn to the body of the
   response if it was succesful"
   [transform-fn params]
-  (map
-    (if-successful transform-fn)
-    [(fetch params)]))
+  (transform-successful
+    transform-fn
+    (fetch-jsonp params)))
 
 (comment
   (go
-    (println (<! (fetch {:action "query" :list "lists" :lstmode "allpublic"})))
+    (println (<! (fetch-jsonp {:action "query" :list "lists" :lstmode "allpublic"})))
     ))

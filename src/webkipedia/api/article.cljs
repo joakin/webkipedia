@@ -1,7 +1,8 @@
 (ns webkipedia.api.article
-  (:require [webkipedia.api.core :refer [fetch-with-transform to-props memoize-async-db]]
+  (:require [webkipedia.api.core :refer [fetch-with-transform to-props memoize-async-db hosts transform-successful]]
             [cljs.core.async :refer [map]]
             [clojure.string :refer [replace]]
+            [cljs-http.client :as http]
             ))
 
 (def params {:action "query"
@@ -29,3 +30,19 @@
           (assoc params :titles display-title))
         ))))
 
+(defn clean-parsoid [content]
+  (let [div (.createElement js/document "div")]
+    (set! (.-innerHTML div) content)
+    (println div)
+    (.querySelector div "body")))
+
+(def parsoid-article
+  ; (memoize-async-db
+  ;   {:prefix "parsoid-articles" :refresh (* 15 60 1000)}
+    (fn [title]
+      (let [display-title (replace title "_" " ")]
+        (transform-successful
+          clean-parsoid
+          (http/get (str (:en-restbase hosts) display-title) {:with-credentials? false}))))
+    ; )
+)

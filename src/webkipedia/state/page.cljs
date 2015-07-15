@@ -46,7 +46,6 @@
         (let [result (<! (article/summary title))
               success (:success result)
               content (:body result)]
-          (println content)
           ; If the content is relevant for the current page, swap it
           (if (= (:title content) (:title @page))
             (set-content! content))))
