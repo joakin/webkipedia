@@ -41,9 +41,6 @@
           miss? (nil? value)
           time-diff (- (.now js/Date) date)
           too-old? (> time-diff refresh)]
-      ; (println "key" key "entry" value)
-      ; (println "cache" (and (not miss?) (not too-old?)))
-      ; (println "miss" (or miss? too-old?))
       (cond
         ; Already have an entry
         (and (not miss?) (not too-old?))

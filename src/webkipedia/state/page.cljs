@@ -54,7 +54,7 @@
         (let [result (<! (related-pages title))
               success (:success result)
               related (:body result)]
-          (println related)
+          ; (println related)
           ; If the result is relevant for the current page, swap it
           (if (= (:title related) (:title @page))
             (set-related! related))))

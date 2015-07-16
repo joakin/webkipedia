@@ -4,9 +4,11 @@
 
 (defonce current-route (atom nil))
 
-(defn dispatch [state action payload]
+(defn dispatch [state action [route args]]
   (case action
-    :route/new payload ; Payload is the new route
+    :route/new route ; Payload is the new route
     state))
 
 (register :route dispatch current-route)
+
+(defn current [] @current-route)

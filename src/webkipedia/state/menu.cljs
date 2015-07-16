@@ -19,3 +19,4 @@
   {:home    {:label "Home"    :attrs {:href "#/"}}
    :explore {:label "Explore" :attrs {:href "#/explore"}}})
 
+(defn is-visible? [] (:visible @menu))

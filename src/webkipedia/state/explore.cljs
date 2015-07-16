@@ -18,7 +18,7 @@
     (let [result (<! (random))
           success (:success result)
           random-pages (:body result)]
-      (println random-pages)
+      ; (println random-pages)
       (set-random! random-pages))))
 
 (defn dispatch [state action payload]

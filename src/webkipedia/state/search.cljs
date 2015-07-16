@@ -26,7 +26,7 @@
         (let [result (<! (search-pages query))
               success (:success result)
               search-results (:body result)]
-          (println search-results)
+          ; (println search-results)
           ; When finished, only set if the results query is the current query
           (when (= (:query search-results) (:query @search))
             (set-results! search-results))))

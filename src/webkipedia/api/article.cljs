@@ -33,7 +33,6 @@
 (defn clean-parsoid [content]
   (let [div (.createElement js/document "div")]
     (set! (.-innerHTML div) content)
-    (println div)
     (.querySelector div "body")))
 
 (def parsoid-article
