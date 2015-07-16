@@ -29,19 +29,3 @@
           (partial clean-and-add-title title)
           (assoc params :titles display-title))
         ))))
-
-(defn clean-parsoid [content]
-  (let [div (.createElement js/document "div")]
-    (set! (.-innerHTML div) content)
-    (.querySelector div "body")))
-
-(def parsoid-article
-  ; (memoize-async-db
-  ;   {:prefix "parsoid-articles" :refresh (* 15 60 1000)}
-    (fn [title]
-      (let [display-title (replace title "_" " ")]
-        (transform-successful
-          clean-parsoid
-          (http/get (str (:en-restbase hosts) display-title) {:with-credentials? false}))))
-    ; )
-)

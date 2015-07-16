@@ -7,6 +7,7 @@
             [webkipedia.api.random :refer [random]]
             [webkipedia.api.related :refer [related-pages]]
             [webkipedia.api.search :refer [search-pages]]
+            [webkipedia.api.mobileview-article :as mobileview-article]
             ))
 
 (defn test-colls []
@@ -36,6 +37,6 @@
   (go
     (println (<! (search-pages query)))))
 
-(defn test-parsoid [title]
+(defn test-mobileview [title]
   (go
-    (println (<! (article/parsoid-article title)))))
+    (println (<! (mobileview-article/summary title)))))

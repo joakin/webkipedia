@@ -3,6 +3,7 @@
   (:require [reagent.core :as reagent :refer [atom]]
             [cljs.core.async :refer [<!]]
             [webkipedia.api.article :as article]
+            [webkipedia.api.mobileview-article :as mobileview-article]
             [webkipedia.api.related :refer [related-pages]]
             [webkipedia.dispatcher :refer [register]]
             ))
@@ -18,6 +19,7 @@
   (swap! page assoc :content content))
 
 (defn reset-content! []
+  (println "reseti")
   (set-content! nil))
 
 (defn set-related! [related]
@@ -43,7 +45,9 @@
       (reset-related!)
       ; Request article content
       (go
-        (let [result (<! (article/summary title))
+        (let [result (<!
+                       #_(article/summary title)
+                       (mobileview-article/summary title))
               success (:success result)
               content (:body result)]
           ; If the content is relevant for the current page, swap it

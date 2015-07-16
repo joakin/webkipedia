@@ -44,7 +44,7 @@
       )))
 
 ; page
-(defroute "/wiki/:title" [title]
+(defroute #"/wiki/(.*)" [title]
   (update-route! :page title)
   (dispatch :page/load title))
 

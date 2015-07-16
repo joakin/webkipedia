@@ -1,11 +1,19 @@
 @import "./variables";
 
-.PageHeader { margin-bottom: 1em; }
+.PageHeader {
+  margin-bottom: 1em; display: flex;
+  flex-direction: column;
+}
+.PageHeader>* {
+  margin-bottom: 0;
+}
 .PageHeader-title {
   margin-bottom: 0;
   font-size: 2.5rem;
   font-weight: bold;
+  display: block;
 }
 .PageHeader-description {
   color: @secondaryTextColor;
+  font-weight: 300;
 }

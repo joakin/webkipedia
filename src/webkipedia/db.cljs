@@ -28,7 +28,7 @@
 
 (defn db-get [key] (storage-get key))
 
-(def VERSION 4)
+(def VERSION 5)
 
 (defn init! []
   (let [version (:value (db-get :webkipedia-version))]
