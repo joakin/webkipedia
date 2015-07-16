@@ -17,6 +17,7 @@
 
 (def menu-items
   {:home    {:label "Home"    :attrs {:href "#/"}}
+   :history {:label "History" :attrs {:href "#/history"}}
    :explore {:label "Explore" :attrs {:href "#/explore"}}})
 
 (defn is-visible? [] (:visible @menu))

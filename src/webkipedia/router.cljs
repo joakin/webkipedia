@@ -53,3 +53,6 @@
   (update-route! :explore)
   (dispatch :random/load))
 
+; history
+(defroute #"/history" []
+  (update-route! :history))
