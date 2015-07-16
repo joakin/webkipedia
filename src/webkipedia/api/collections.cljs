@@ -3,12 +3,12 @@
             ))
 
 (def params {:action "query"
-            :list "lists"
-            :lstmode "allpublic"
-            :lstprop (to-props
-                       ["label" "description" "public"
-                        "image" "count" "updated" "owner"])
-            })
+             :list "lists"
+             :lstmode "allpublic"
+             :lstprop (to-props
+                        ["label" "description" "public"
+                         "image" "count" "updated" "owner"])
+             })
 
 (defn all-public [] (fetch-jsonp params))
 
