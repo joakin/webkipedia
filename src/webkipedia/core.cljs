@@ -1,9 +1,9 @@
 (ns webkipedia.core
     (:require [reagent.core :as reagent]
+              [webkipedia.state.core]
               [webkipedia.router :as router]
               [webkipedia.ui.webkipedia :refer [webkipedia]]
               [webkipedia.db :as db]
-              [webkipedia.state.core]
               [webkipedia.scratch]))
 
 (enable-console-print!)
@@ -12,6 +12,7 @@
   (reagent/render-component [webkipedia]
                             (.-body js/document)))
 
+(.initializeTouchEvents js/React true)
 (db/init!)
 (render!)
 (router/init)
