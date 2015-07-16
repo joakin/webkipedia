@@ -12,7 +12,7 @@
              :prop (to-props ["text" "sections" "displaytitle" "description" "image" "thumb"])
              :sectionprop (to-props ["toclevel" "level" "line" "number" "index" "fromtitle" "anchor"])
              :noheadings ""
-             :thumbsize 650
+             :thumbsize 500
              :page "Test"
              })
 
