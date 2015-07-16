@@ -11,6 +11,6 @@ pom.xml
 .lein-plugins/
 .repl
 .nrepl-port
-
+npm-debug.log
 node_modules/
-resources/public/css/
+resources/public/app.js

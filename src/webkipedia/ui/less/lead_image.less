@@ -1,10 +1,5 @@
 @import "./mixins";
 
-.blur(@size: 12px) {
-  -webkit-filter: blur(@size);
-  filter: blur(@size);
-}
-
 .size(@size) {
   height: @size;
   width: @size;
@@ -35,7 +30,7 @@
   background-repeat: no-repeat;
   background-position: 50%;
   .is-vertical & {
-    .blur();
+    filter: blur(12px);
   }
 }
 .LeadImage-vertical {
