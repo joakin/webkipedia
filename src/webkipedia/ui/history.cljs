@@ -6,7 +6,7 @@
   (let [items (:items @h/history)
         has-pages? (> (count items) 0)]
     [:div.History
-     [:h3 "History"]
+     [:h1 "History"]
      (if has-pages?
        [page-list items]
        [:p

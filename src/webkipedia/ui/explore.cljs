@@ -7,7 +7,7 @@
   (let [random-pages (:random @e/explore)
         has-pages? (> (count random-pages) 0)]
     [:div.Explore
-     [:h3 "Explore"]
+     [:h1 "Explore"]
      (if has-pages?
        [page-list random-pages]
        [loading])]))
