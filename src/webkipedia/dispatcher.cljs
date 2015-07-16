@@ -19,5 +19,7 @@
   ([action payload]
    (doseq [[k store] @stores]
      (let [{:keys [dispatch-fn state]} store
-           current-state @state]
-       (reset! state (dispatch-fn current-state action payload))))))
+           current-state @state
+           new-state (dispatch-fn current-state action payload)]
+       (when (not= current-state new-state)
+         (reset! state new-state))))))
