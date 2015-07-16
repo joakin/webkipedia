@@ -1,3 +1,4 @@
+@import "./mixins";
 @import "normalize";
 @import "skeleton";
 
@@ -30,6 +31,9 @@ html, body {
 }
 
 .Webkipedia-body {
-  padding-top: 2rem;
+  padding: 1em 0.75em;
   transition: width 0.3s, padding 0.3s;
+  .larger-than-mobile({
+    padding: 1em 1em;
+  });
 }

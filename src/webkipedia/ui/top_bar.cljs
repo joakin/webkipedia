@@ -1,11 +1,10 @@
 (ns webkipedia.ui.top-bar
     (:require [webkipedia.ui.logo :refer [logo]]
-              [webkipedia.ui.button-link :refer [button-link]]
+              [webkipedia.ui.menu-bar-button :refer [menu-bar-button]]
               [webkipedia.dispatcher :refer [dispatch]]
               ))
 
 (defn top-bar []
   [:div.TopBar
    [logo]
-   [button-link {:text "Menu"
-                 :on-click #(dispatch :menu/show)}]])
+   [menu-bar-button {:on-click #(dispatch :menu/show)}]])
