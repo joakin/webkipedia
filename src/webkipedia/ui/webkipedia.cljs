@@ -7,6 +7,7 @@
             [webkipedia.ui.page :refer [page]]
             [webkipedia.ui.explore :refer [explore]]
             [webkipedia.ui.history :refer [history]]
+            [webkipedia.ui.about :refer [about]]
             ))
 
 (def not-found [:div "Not found"])
@@ -21,5 +22,6 @@
        :page [page]
        :explore [explore]
        :history [history]
+       :about [about]
        not-found)
      ]]])

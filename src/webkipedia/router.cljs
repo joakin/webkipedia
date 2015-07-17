@@ -56,3 +56,7 @@
 ; history
 (defroute #"/history" []
   (update-route! :history))
+
+; about
+(defroute #"/about" []
+  (update-route! :about))

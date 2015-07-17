@@ -18,6 +18,8 @@
 (def menu-items
   {:home    {:label "Home"    :attrs {:href "#/"}}
    :history {:label "History" :attrs {:href "#/history"}}
-   :explore {:label "Explore" :attrs {:href "#/explore"}}})
+   :explore {:label "Explore" :attrs {:href "#/explore"}}
+   :about   {:label "About" :attrs {:href "#/about"}}
+   })
 
 (defn is-visible? [] (:visible @menu))

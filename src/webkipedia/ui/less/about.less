@@ -1,0 +1,23 @@
+.About {
+  transform-style: preserve-3d;
+  perspective: 500px;
+}
+
+@keyframes slidein {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
+.About-header {
+  text-align: center;
+  font-family: serif;
+  font-size: 8rem;
+  animation-duration: 3s;
+  animation-name: slidein;
+  animation-iteration-count: infinite;
+  animation-delay: 1s 2s;
+}
