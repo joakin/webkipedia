@@ -15,11 +15,16 @@
 (defn set-title [page title]
   (assoc page :title title))
 
+(defn set-content [state content]
+  (assoc state :content content))
+
+(defn set-related [state related]
+  (assoc state :related related))
+
 (defn set-content! [content]
   (swap! page assoc :content content))
 
 (defn reset-content! []
-  (println "reseti")
   (set-content! nil))
 
 (defn set-related! [related]
@@ -40,9 +45,6 @@
   (let [content (:content current-page)
         not-loaded? (not (content-loaded? current-page))]
     (when not-loaded?
-      ; Clear the content while we request it
-      (reset-content!)
-      (reset-related!)
       ; Request article content
       (go
         (let [result (<!
@@ -68,7 +70,11 @@
   (case action
     :page/load
     (let [title payload
-          new-state (set-title state title)]
+          new-state ; Clear and return the content while we request it
+          (-> state
+              (set-content nil)
+              (set-related nil)
+              (set-title title))]
       (load-page! title new-state)
       new-state)
     state))
