@@ -1,11 +1,18 @@
 @import "./variables";
+@import "./mixins";
 
 .PageHeader {
   margin-bottom: 1em; display: flex;
   flex-direction: column;
+  flex: 1;
+  text-align: center;
+  .larger-than-tablet({
+    text-align: left;
+  });
 }
 .PageHeader>* {
   margin-bottom: 0;
+  width: 100%;
 }
 .PageHeader-title {
   margin-bottom: 0;

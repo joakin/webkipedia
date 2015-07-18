@@ -7,8 +7,11 @@
   from {
     transform: rotateY(0deg);
   }
-  to {
+  50% {
     transform: rotateY(360deg);
+  }
+  to {
+    transform: rotateY(0deg);
   }
 }
 
@@ -18,6 +21,6 @@
   font-size: 8rem;
   animation-duration: 3s;
   animation-name: slidein;
-  animation-iteration-count: infinite;
-  animation-delay: 1s 2s;
+  animation-iteration-count: 1;
+  animation-delay: 1s;
 }
