@@ -40,3 +40,7 @@
 (defn test-mobileview [title]
   (go
     (println (<! (mobileview-article/summary title)))))
+
+(defn test-mobileview-content [title]
+  (go
+    (.log js/console (clj->js (<! (mobileview-article/content title))))))

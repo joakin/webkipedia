@@ -66,6 +66,18 @@
             (set-related! related))))
       )))
 
+(defn load-page-content! [{:keys [title] :as state}]
+  (go
+    (let [result (<! (mobileview-article/content title))
+          success (:success result)
+          content (:body result)]
+      ; If the content is relevant for the current page, swap it
+      (if (= (:title content) (:title @page))
+        (let [summary (first (get-in @page [:content :sections]))
+              sections (assoc (:sections content) 0 summary)
+              merged-content (assoc (:content @page) :sections sections)]
+          (set-content! merged-content))))))
+
 (defn dispatch [state action payload]
   (case action
     :page/load
@@ -77,6 +89,10 @@
               (set-title title))]
       (load-page! title new-state)
       new-state)
+    :page/load-content
+    (let []
+      (load-page-content! state)
+      state)
     state))
 
 (register :page dispatch page)

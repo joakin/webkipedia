@@ -24,8 +24,6 @@
      [:div.Page-lead
       (if thumb (lead-image image thumb) nil)
       [page-header {:title title :description description}]]
-     ; [:div.Page-content
-     ;  {:dangerouslySetInnerHTML {:__html extract}}]
-       [mobileview-page content]
-     (if loading? [loading] nil)
+     (if loading? [loading]
+       [mobileview-page content])
      [related-pages (:list related)]]))
