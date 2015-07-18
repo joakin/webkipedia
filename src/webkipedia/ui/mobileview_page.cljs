@@ -11,7 +11,9 @@
       {:dangerouslySetInnerHTML
        {:__html (:text (first sections))}}]
      (if small-article?
-       [button-link {:on-click #(dispatch :page/load-content) :text "Read more"}]
+       [:div.MobileViewPage-readmore
+        [button-link {:on-click #(dispatch :page/load-content)
+                      :text "Read more"}]]
        [:div.Sections
         (map (fn [{:keys [line level] :as section}]
                (when section
