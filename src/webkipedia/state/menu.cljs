@@ -4,13 +4,10 @@
 
 (defonce menu (atom {:visible false}))
 
-(defn show-menu [menu] (assoc menu :visible true))
-(defn hide-menu [menu] (assoc menu :visible false))
-
 (defn dispatch [state action payload]
   (case action
-    :menu/show (show-menu state)
-    :menu/hide (hide-menu state)
+    :menu/show (assoc state :visible true)
+    :menu/hide (assoc state :visible false)
     state))
 
 (register :menu dispatch menu)

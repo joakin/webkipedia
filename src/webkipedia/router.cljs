@@ -4,6 +4,8 @@
             [goog.history.EventType :as EventType]
             [webkipedia.dispatcher :refer [dispatch]]
             [webkipedia.actions.search :refer [reset-search! new-search!]]
+            [webkipedia.actions.menu :refer [hide-menu!]]
+            [webkipedia.actions.explore :refer [load-random!]]
             [webkipedia.state.menu :as menu]
             [webkipedia.state.route :as route]
             )
@@ -26,7 +28,7 @@
 
 (defn update-route! [route & args]
   (when (not= route (route/current)) (dispatch :route/new [route args]))
-  (when (menu/is-visible?) (dispatch :menu/hide)))
+  (when (menu/is-visible?) (hide-menu!)))
 
 ;; Route definitions
 
@@ -51,7 +53,7 @@
 ; explore
 (defroute #"/explore(/.*)?" [buster]
   (update-route! :explore)
-  (dispatch :random/load))
+  (load-random!))
 
 ; history
 (defroute #"/history" []
