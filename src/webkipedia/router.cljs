@@ -7,6 +7,7 @@
             [webkipedia.actions.menu :refer [hide-menu!]]
             [webkipedia.actions.explore :refer [load-random!]]
             [webkipedia.actions.page :refer [change-page!]]
+            [webkipedia.actions.route :refer [change-route!]]
             [webkipedia.state.menu :as menu]
             [webkipedia.state.route :as route]
             )
@@ -27,15 +28,11 @@
 (defn replace! [url]
   (.replaceToken history url))
 
-(defn update-route! [route & args]
-  (when (not= route (route/current)) (dispatch :route/new [route args]))
-  (when (menu/is-visible?) (hide-menu!)))
-
 ;; Route definitions
 
 ; home
 (defroute "/" []
-  (update-route! :home)
+  (change-route! :home)
   (reset-search!))
 
 ; search
@@ -43,23 +40,23 @@
   (if (= q "")
     (replace! "/") ; If there's no query, show home
     (do
-      (update-route! :search q)
+      (change-route! :search q)
       (new-search! q))))
 
 ; page
 (defroute #"/wiki/(.*)" [title]
-  (update-route! :page title)
+  (change-route! :page title)
   (change-page! title))
 
 ; explore
 (defroute #"/explore(/.*)?" [buster]
-  (update-route! :explore)
+  (change-route! :explore)
   (load-random!))
 
 ; history
 (defroute #"/history" []
-  (update-route! :history))
+  (change-route! :history))
 
 ; about
 (defroute #"/about" []
-  (update-route! :about))
+  (change-route! :about))

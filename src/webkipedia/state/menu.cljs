@@ -7,7 +7,7 @@
 (defn dispatch [state action payload]
   (case action
     :menu/show (assoc state :visible true)
-    :menu/hide (assoc state :visible false)
+    (:menu/hide :route/new) (assoc state :visible false)
     state))
 
 (register :menu dispatch menu)
