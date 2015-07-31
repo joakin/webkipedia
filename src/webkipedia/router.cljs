@@ -3,6 +3,7 @@
             [goog.events :as events]
             [goog.history.EventType :as EventType]
             [webkipedia.dispatcher :refer [dispatch]]
+            [webkipedia.actions.search :refer [reset-search! new-search!]]
             [webkipedia.state.menu :as menu]
             [webkipedia.state.route :as route]
             )
@@ -32,7 +33,7 @@
 ; home
 (defroute "/" []
   (update-route! :home)
-  (dispatch :search/reset))
+  (reset-search!))
 
 ; search
 (defroute #"/search(/(.*))?/" [_ q]
@@ -40,8 +41,7 @@
     (replace! "/") ; If there's no query, show home
     (do
       (update-route! :search q)
-      (dispatch :search/query q)
-      )))
+      (new-search! q))))
 
 ; page
 (defroute #"/wiki/(.*)" [title]
