@@ -6,6 +6,7 @@
             [webkipedia.actions.search :refer [reset-search! new-search!]]
             [webkipedia.actions.menu :refer [hide-menu!]]
             [webkipedia.actions.explore :refer [load-random!]]
+            [webkipedia.actions.page :refer [change-page!]]
             [webkipedia.state.menu :as menu]
             [webkipedia.state.route :as route]
             )
@@ -48,7 +49,7 @@
 ; page
 (defroute #"/wiki/(.*)" [title]
   (update-route! :page title)
-  (dispatch :page/load title))
+  (change-page! title))
 
 ; explore
 (defroute #"/explore(/.*)?" [buster]

@@ -1,6 +1,6 @@
 (ns webkipedia.ui.mobileview-page
   (:require [webkipedia.ui.button-link :refer [button-link]]
-            [webkipedia.dispatcher :refer [dispatch]]))
+            [webkipedia.actions.page :refer [load-all-content!]]))
 
 (defn mobileview-page [content]
   (let [sections (:sections content)
@@ -12,7 +12,7 @@
        {:__html (:text (first sections))}}]
      (if small-article?
        [:div.MobileViewPage-readmore
-        [button-link {:on-click #(dispatch :page/load-content)
+        [button-link {:on-click #(load-all-content! (:title content))
                       :text "Read more"}]]
        [:div.Sections
         (map (fn [{:keys [line level] :as section}]
