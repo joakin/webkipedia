@@ -40,7 +40,22 @@
     column-count: 4;
   });
 }
-.PageList>.PageList-item-wrapper {
-  display: inline-block;
+.PageList .PageList-item-wrapper {
+  overflow: hidden;
   width: 100%;
+}
+.PageList-item-wrapper-enter {
+  opacity: 0.01;
+  max-height: 0;
+  transition: max-height,opacity 0.6s ease-in;
+}
+.PageList-item-wrapper-enter-active,
+.PageList-item-wrapper-leave {
+  opacity: 1;
+  max-height: 100px;
+}
+.PageList-item-wrapper-leave-active {
+  opacity: 0.00;
+  max-height: 0;
+  transition: max-height,opacity 0.3s ease-out;
 }
