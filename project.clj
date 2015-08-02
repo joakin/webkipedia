@@ -4,15 +4,16 @@
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
 
-  :dependencies [[org.clojure/clojure "1.7.0-RC1"]
-                 [org.clojure/clojurescript "0.0-3269"]
+  :dependencies [[org.clojure/clojure "1.7.0"]
+                 [org.clojure/clojurescript "1.7.28"]
                  [org.clojure/core.async "0.1.346.0-17112a-alpha"]
-                 [reagent "0.5.0"]
+                 [reagent "0.5.0" :exclusions [cljsjs/react]]
+                 [cljsjs/react-with-addons "0.13.3-0"]
                  [secretary "1.2.3"]
-                 [cljs-http "0.1.35"]]
+                 [cljs-http "0.1.36"]]
 
   :plugins [[lein-cljsbuild "1.0.6"]
-            [lein-figwheel "0.3.1"]
+            [lein-figwheel "0.3.7"]
             [lein-less "1.7.5"]]
 
   :less {:source-paths ["src/webkipedia/ui/less"]
