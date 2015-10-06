@@ -17,9 +17,25 @@
 
 (def history (History.))
 
+(defn scroll-top! [] (.-scrollY js/window))
+
+(defn set-scroll-top! []
+  (let [state (or (.-state js/history) #js {})]
+    (aset state "scroll-top" (scroll-top!))
+    (.replaceState js/history state)))
+
+(defn get-scroll-top []
+  (when-let [state (.-state js/history)]
+    (aget state "scroll-top")))
+
+(defn handle-url-change! [e]
+  #_(when-not (.-isNavigation e)
+    (js/window.scrollTo 0 0))
+  (secretary/dispatch! (.-token e)))
+
 (defn init []
   (goog.events/listen
-    history EventType/NAVIGATE #(secretary/dispatch! (.-token %)))
+    history EventType/NAVIGATE #(handle-url-change! %))
   (.setEnabled history true))
 
 (defn navigate! [url]
