@@ -1,12 +1,34 @@
 (ns webkipedia.state.history
+  (:require-macros [cljs.core.async.macros :refer [go]])
   (:require [reagent.core :as reagent :refer [atom]]
-            [webkipedia.db :refer [db-get db-set]]))
+            [cljs.core.async :refer [<!]]
+            [webkipedia.db :refer [set-item get-item parse stringify]]))
 
-(def hist-key :article-history)
+(def hist-key "article-history")
 
-(let [db-history (db-get hist-key)]
-  (defonce history
-    (atom {:items (if db-history (get-in db-history [:value :items]) '())})))
+(defonce history (atom {:items '()}))
+
+(defonce init-history
+  (do
+    ;; Fetch the default history
+    (go
+      (let [[status value] (<! (get-item hist-key))]
+        (if (= status :err)
+          (do
+            (println "Error saving history")
+            (println value))
+          (when value
+            (swap! history assoc :items (parse value))))))
+    ;; Watch atom and save th DB on change
+    (add-watch
+      history :save-to-db
+      (fn [key a old-state new-state]
+        (go
+          (let [[status value] (<! (set-item hist-key (stringify new-state)))]
+            (when (= status :err)
+              (println "Error saving history")
+              (println value))))))
+    ))
 
 (defn add-entry [history title]
   (if (not= (:title (first (:items history))) title)
@@ -17,8 +39,5 @@
 
 (defn dispatch [state action payload]
   (case action
-    :page/load
-    (let [new-hist (add-entry state payload)]
-      (db-set hist-key new-hist)
-      new-hist)
+    :page/change (add-entry state payload)
     state))

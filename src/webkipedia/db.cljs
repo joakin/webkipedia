@@ -1,37 +1,31 @@
 (ns webkipedia.db
-  (:require [cljs.reader :refer [read-string]]))
+  (:require-macros [cljs.core.async.macros :refer [go]])
+  (:require [cljs.reader :refer [read-string]]
+            [cljs.core.async :refer [<! put! chan]]))
 
-(defn- get-storage []
-  (. js/window -localStorage))
+(defn parse [x] (if x (read-string x) nil))
+(defn stringify [x] (pr-str x))
 
-(defn- parse [x] (if x (read-string x) nil))
-(defn- stringify [x] (pr-str x))
+(defn get-item [key]
+  (let [out (chan)]
+    (go
+      (.getItem js/localforage key
+                (fn [err value]
+                  (put! out (if err [:err err] [:success value])))))
+    out))
 
-(defn- storage-get [key]
-  (let [storage (get-storage)]
-    (->> key
-        stringify
-        (.getItem storage)
-        parse)))
-
-(defn- storage-set [key value]
-  (let [storage (get-storage)
-        str-key (stringify key)
-        str-value (stringify value)]
-    (.setItem storage str-key str-value)))
-
-(defn- clear []
-  (.clear (get-storage)))
-
-(defn db-set [key, value]
-  (storage-set key {:date (.now js/Date) :value value}))
-
-(defn db-get [key] (storage-get key))
+(defn set-item [key value]
+  (let [out (chan)]
+    (go
+      (.setItem js/localforage key value
+                (fn [err value]
+                  (put! out (if err [:err err] [:success value])))))
+    out))
 
 (def VERSION 5)
 
 (defn init! []
-  (let [version (:value (db-get :webkipedia-version))]
-    (if (not= VERSION version)
-      (do (clear)
-          (db-set :webkipedia-version VERSION)))))
+  (.config js/localforage
+           #js {:name "webkipedia"
+                :version VERSION
+                }))
