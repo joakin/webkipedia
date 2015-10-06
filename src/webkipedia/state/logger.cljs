@@ -9,4 +9,4 @@
 
 (defn dispatch [state action payload]
   (add-action state action payload)
-  (println action payload))
+  (.log js/console (str action) (clj->js payload)))
