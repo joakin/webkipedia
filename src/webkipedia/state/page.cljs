@@ -1,6 +1,5 @@
 (ns webkipedia.state.page
   (:require [reagent.core :as reagent :refer [atom]]
-            [webkipedia.dispatcher :refer [register]]
             ))
 
 (defonce page
@@ -26,5 +25,3 @@
     :page/content (set-content state payload)
     :page/related (set-related state payload)
     state))
-
-(register :page dispatch page)

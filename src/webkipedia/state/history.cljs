@@ -1,6 +1,5 @@
 (ns webkipedia.state.history
   (:require [reagent.core :as reagent :refer [atom]]
-            [webkipedia.dispatcher :refer [register]]
             [webkipedia.db :refer [db-get db-set]]))
 
 (def hist-key :article-history)
@@ -23,5 +22,3 @@
       (db-set hist-key new-hist)
       new-hist)
     state))
-
-(register :history dispatch history)

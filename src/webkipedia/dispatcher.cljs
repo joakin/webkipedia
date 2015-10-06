@@ -9,8 +9,9 @@
 (defn register
   "Register a store composed of a dispatcher function and an atom with the
   state of the store"
-  [k f state]
-  (swap! stores assoc k (store f state)))
+  ([k f state] (swap! stores assoc k (store f state)))
+  ([xs] (doall (map (fn [[k f state]] (register k f state)) xs)))
+  )
 
 (defn dispatch
   "Dispatches an [action payload] to the dispatch function of the stores.

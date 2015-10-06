@@ -1,6 +1,6 @@
 (ns webkipedia.state.menu
   (:require [reagent.core :as reagent :refer [atom]]
-            [webkipedia.dispatcher :refer [register]]))
+            ))
 
 (defonce menu (atom {:visible false}))
 
@@ -9,8 +9,6 @@
     :menu/show (assoc state :visible true)
     (:menu/hide :route/new) (assoc state :visible false)
     state))
-
-(register :menu dispatch menu)
 
 (def menu-items
   {:home    {:label "Home"    :attrs {:href "#/"}}
