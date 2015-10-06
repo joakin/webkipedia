@@ -13,8 +13,7 @@
                  [cljs-http "0.1.36"]]
 
   :plugins [[lein-cljsbuild "1.0.6"]
-            [lein-figwheel "0.3.7"]
-            [lein-less "1.7.5"]]
+            [lein-figwheel "0.3.7"]]
 
   :less {:source-paths ["src/webkipedia/ui/less"]
          :target-path "resources/public/css"}
