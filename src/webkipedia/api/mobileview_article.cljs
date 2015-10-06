@@ -1,5 +1,5 @@
 (ns webkipedia.api.mobileview-article
-  (:require [webkipedia.api.core :refer [fetch-with-transform to-props memoize-async-db hosts]]
+  (:require [webkipedia.api.core :refer [fetch-with-transform to-props hosts]]
             [cljs.core.async :refer [map]]
             [clojure.string :refer [replace]]
             [cljs-http.client :as http]
@@ -47,22 +47,16 @@
       (clean-sections)
       ))
 
-(def summary
-  (memoize-async-db
-    {:prefix "mobileview-articles" :refresh (* 15 60 1000)}
-    (fn [title]
-      (let [display-title (replace title "_" " ")]
-        (fetch-with-transform
-          (partial clean-up title)
-          (assoc summary-params :page display-title))
-        ))))
+(defn summary [title]
+  (let [display-title (replace title "_" " ")]
+    (fetch-with-transform
+      (partial clean-up title)
+      (assoc summary-params :page display-title))
+    ))
 
-(def content
-  (memoize-async-db
-    {:prefix "mobileview-articles-content" :refresh (* 15 60 1000)}
-    (fn [title]
-      (let [display-title (replace title "_" " ")]
-        (fetch-with-transform
-          (partial clean-up title)
-          (assoc article-params :page display-title))
-        ))))
+(defn content [title]
+  (let [display-title (replace title "_" " ")]
+    (fetch-with-transform
+      (partial clean-up title)
+      (assoc article-params :page display-title))
+    ))

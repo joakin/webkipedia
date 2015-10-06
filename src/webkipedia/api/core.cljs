@@ -2,8 +2,7 @@
   (:require-macros [cljs.core.async.macros :refer [go]])
   (:require [cljs-http.client :as http]
             [cljs.core.async :refer [map <! >! put! chan]]
-            [clojure.string :refer [join]]
-            [webkipedia.db :refer [db-get db-set]]))
+            [clojure.string :refer [join]]))
 
 (def hosts
   {:en "http://en.wikipedia.org/w/api.php"
@@ -31,31 +30,6 @@
     (if (:success res)
       (assoc res :body (f (:body res)))
       res)))
-
-(defn memoize-async-db
-  "Memoize a function that returns a channel that will get a result"
-  [{:keys [prefix refresh] :as opts} f]
-  (fn [& args]
-    (let [key [prefix args]
-          {:keys [value date]} (db-get key)
-          miss? (nil? value)
-          time-diff (- (.now js/Date) date)
-          too-old? (> time-diff refresh)]
-      (cond
-        ; Already have an entry
-        (and (not miss?) (not too-old?))
-        (let [out-chan (chan)]
-          (put! out-chan value)
-          out-chan)
-        ; Need to fetch a new entry
-        (or miss? too-old?)
-        (let [res-chan (apply f args)
-              out-chan (chan)]
-          (go
-            (let [res (<! res-chan)]
-              (db-set key res)
-              (>! out-chan res)))
-          out-chan)))))
 
 (defn transform-successful
   "Transform a channel response with a function if it was successful"

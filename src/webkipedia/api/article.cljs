@@ -1,5 +1,5 @@
 (ns webkipedia.api.article
-  (:require [webkipedia.api.core :refer [fetch-with-transform to-props memoize-async-db hosts transform-successful]]
+  (:require [webkipedia.api.core :refer [fetch-with-transform to-props hosts transform-successful]]
             [cljs.core.async :refer [map]]
             [clojure.string :refer [replace]]
             [cljs-http.client :as http]
@@ -20,12 +20,9 @@
       (assoc :title title)     ; Add the title
       ))
 
-(def summary
-  (memoize-async-db
-    {:prefix "articles" :refresh (* 15 60 1000)}
-    (fn [title]
-      (let [display-title (replace title "_" " ")]
-        (fetch-with-transform
-          (partial clean-and-add-title title)
-          (assoc params :titles display-title))
-        ))))
+(defn summary [title]
+  (let [display-title (replace title "_" " ")]
+    (fetch-with-transform
+      (partial clean-and-add-title title)
+      (assoc params :titles display-title))
+    ))

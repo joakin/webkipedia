@@ -1,5 +1,5 @@
 (ns webkipedia.api.search
-  (:require [webkipedia.api.core :refer [fetch-with-transform to-props memoize-async-db]]
+  (:require [webkipedia.api.core :refer [fetch-with-transform to-props]]
             [clojure.string :refer [replace]]
             [cljs.core.async :as async]
             ))
@@ -30,10 +30,7 @@
              :pslimit LIMIT
              })
 
-(def search-pages
-  (memoize-async-db
-    {:prefix "search-results" :refresh (* 5 60 1000)}
-    (fn [query]
-      (fetch-with-transform
-        (partial clean-results query)
-        (assoc params :gpssearch query :pssearch query)))))
+(defn search-pages [query]
+  (fetch-with-transform
+    (partial clean-results query)
+    (assoc params :gpssearch query :pssearch query)))
