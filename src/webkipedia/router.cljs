@@ -39,9 +39,9 @@
 (defroute #"/search(/(.*))?/" [_ q]
   (if (= q "")
     (replace! "/") ; If there's no query, show home
-    (do
-      (change-route! :search q)
-      (new-search! q))))
+    (let [eq (js/decodeURIComponent q)]
+      (change-route! :search eq)
+      (new-search! eq))))
 
 ; page
 (defroute #"/wiki/(.*)" [title]

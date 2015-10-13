@@ -14,6 +14,9 @@
      {:class searching-class}
      [:h1.MainPage-header "Wikipedia"]
      [search-box {:query query
-                  :on-change #(router/replace! (str "/search/" % "/"))}]
+                  :on-change #(router/replace!
+                                (str "/search/"
+                                     (js/encodeURIComponent %)
+                                     "/"))}]
      (if loading? [loading] nil)
      [page-list results-list]]))
