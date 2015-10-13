@@ -2,7 +2,7 @@
   (:require-macros [cljs.core.async.macros :refer [go]])
   (:require [reagent.core :as reagent :refer [atom]]
             [cljs.core.async :refer [<!]]
-            [webkipedia.db.core :refer [set-item get-item parse stringify]]))
+            [webkipedia.db.core :refer [set-item get-item]]))
 
 (def hist-key "article-history")
 
@@ -18,14 +18,14 @@
             (println "Error saving history")
             (println value))
           (when value
-            (swap! history assoc :items (parse value))))))
+            (swap! history assoc :items value)))))
     ;; Watch atom and save th DB on change
     (add-watch
       history :save-to-db
       (fn [key a old-state new-state]
         (go
           (let [items (:items new-state)
-                [status value] (<! (set-item hist-key (stringify items)))]
+                [status value] (<! (set-item hist-key items))]
             (when (= status :err)
               (println "Error saving history")
               (println value))))))

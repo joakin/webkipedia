@@ -11,13 +11,13 @@
     (go
       (.getItem js/localforage key
                 (fn [err value]
-                  (put! out (if err [:err err] [:success value])))))
+                  (put! out (if err [:err err] [:success (parse value)])))))
     out))
 
 (defn set-item [key value]
   (let [out (chan)]
     (go
-      (.setItem js/localforage key value
+      (.setItem js/localforage key (stringify value)
                 (fn [err value]
                   (put! out (if err [:err err] [:success value])))))
     out))
