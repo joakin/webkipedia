@@ -24,7 +24,8 @@
       history :save-to-db
       (fn [key a old-state new-state]
         (go
-          (let [[status value] (<! (set-item hist-key (stringify new-state)))]
+          (let [items (:items new-state)
+                [status value] (<! (set-item hist-key (stringify items)))]
             (when (= status :err)
               (println "Error saving history")
               (println value))))))
