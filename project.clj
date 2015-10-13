@@ -38,6 +38,7 @@
               :compiler {:output-to "resources/public/js/compiled/webkipedia.js"
                          :main webkipedia.core
                          :optimizations :advanced
+                         :externs ["resources/externs/localforage.js"]
                          :pretty-print false}}]}
 
   :figwheel {
