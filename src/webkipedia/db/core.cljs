@@ -1,4 +1,4 @@
-(ns webkipedia.db
+(ns webkipedia.db.core
   (:require-macros [cljs.core.async.macros :refer [go]])
   (:require [cljs.reader :refer [read-string]]
             [cljs.core.async :refer [<! put! chan]]))

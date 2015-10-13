@@ -2,7 +2,7 @@
   (:require-macros [cljs.core.async.macros :refer [go]])
   (:require [reagent.core :as reagent :refer [atom]]
             [cljs.core.async :refer [<!]]
-            [webkipedia.db :refer [set-item get-item parse stringify]]))
+            [webkipedia.db.core :refer [set-item get-item parse stringify]]))
 
 (def hist-key "article-history")
 

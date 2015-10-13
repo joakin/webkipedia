@@ -3,7 +3,7 @@
               [webkipedia.state.core :as state]
               [webkipedia.router :as router]
               [webkipedia.ui.webkipedia :refer [webkipedia]]
-              [webkipedia.db :as db]
+              [webkipedia.db.core :as db]
               [webkipedia.scratch]))
 
 (enable-console-print!)
