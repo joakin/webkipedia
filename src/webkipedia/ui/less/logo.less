@@ -1,10 +1,15 @@
+@import "./variables";
 @import "./mixins";
 
 .Logo {
+  font-family: @titlesFont;
   font-size: 30px;
   transition: font-size 0.3s;
   text-decoration: none;
-  color: inherit;
+  &, &:hover, &:visited {
+    color: inherit;
+    text-decoration: none;
+  }
 }
 .Logo-text {
   display: none;

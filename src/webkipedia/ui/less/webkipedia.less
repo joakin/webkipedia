@@ -1,3 +1,4 @@
+@import "./variables";
 @import "./mixins";
 @import "normalize";
 @import "skeleton";
@@ -5,9 +6,9 @@
 @import "./menu_container";
 @import "./top_bar";
 
-html {
+html, body {
   box-sizing: border-box;
-  font-family: Raleway, sans-serif;
+  font-family: @textFont;
 }
 *, *:before, *:after {
   box-sizing: inherit;
@@ -17,6 +18,13 @@ html, body {
   width: 100%; height: 100%;
   margin: 0; padding: 0;
 }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: @titlesFont;
+}
+a { color: #002bb8; text-decoration: none; }
+a:hover { text-decoration: underline; }
+a:visited { color: #5a3696; }
 
 .Webkipedia {
   background-color: white;
