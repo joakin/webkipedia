@@ -24,16 +24,25 @@
   :clean-targets ^{:protect false} ["resources/public/js/compiled" "target"]
 
   :cljsbuild {
-    :builds [{:id "dev"
+    :builds [{:id "devcards"
+              :source-paths ["src"]
+              :figwheel {:devcards true}
+
+              :compiler {:main webkipedia.devcards.core
+                         :asset-path "js/compiled/devcards_out"
+                         :output-to "resources/public/js/compiled/webkipedia_devcards.js"
+                         :output-dir "resources/public/js/compiled/devcards_out"
+                         :source-map-timestamp true }}
+             {:id "dev"
               :source-paths ["src"]
 
-              :figwheel { :on-jsload "webkipedia.core/on-js-reload" }
+              :figwheel {:on-jsload "webkipedia.core/on-js-reload"}
 
               :compiler {:main webkipedia.core
                          :asset-path "js/compiled/out"
                          :output-to "resources/public/js/compiled/webkipedia.js"
                          :output-dir "resources/public/js/compiled/out"
-                         :source-map-timestamp true }}
+                         :source-map-timestamp true}}
              {:id "min"
               :source-paths ["src"]
               :compiler {:output-to "resources/public/js/compiled/webkipedia.js"
