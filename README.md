@@ -20,7 +20,7 @@ Dev requirements:
 * Leiningen
 
 ```
-lein figwheel # Start the compilation, REPL, and live updates
+lein figwheel devcards dev # Start the compilation, REPL, and live updates
 # In another terminal
 lein less auto # Start compilation of CSS
 ```
@@ -28,11 +28,12 @@ lein less auto # Start compilation of CSS
 Then visit `localhost:3449` for the live reloading version. Any changes to CLJS
 or LESS will be incrementally added to the browser.
 
+You can also visit `localhost:3449/cards.html` to view the development cards.
+
 ### Deployment
 
 ```
-lein cljsbuild once min # Start the advanced compilation
-lein less once # Start compilation of CSS
+npm run build # Start compilation of CSS and the advanced compilation of CLJS.
 ```
 
 Assets are in `resources/public`

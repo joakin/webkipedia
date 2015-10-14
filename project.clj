@@ -5,15 +5,16 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
 
   :dependencies [[org.clojure/clojure "1.7.0"]
-                 [org.clojure/clojurescript "1.7.28"]
+                 [org.clojure/clojurescript "1.7.145"]
                  [org.clojure/core.async "0.1.346.0-17112a-alpha"]
-                 [reagent "0.5.0" :exclusions [cljsjs/react]]
+                 [reagent "0.5.1" :exclusions [cljsjs/react]]
                  [cljsjs/react-with-addons "0.13.3-0"]
                  [secretary "1.2.3"]
-                 [cljs-http "0.1.36"]]
+                 [cljs-http "0.1.37"]
+                 [devcards "0.2.0-3"]]
 
-  :plugins [[lein-cljsbuild "1.0.6"]
-            [lein-figwheel "0.3.7"]]
+  :plugins [[lein-cljsbuild "1.1.0"]
+            [lein-figwheel "0.4.1"]]
 
   :less {:source-paths ["src/webkipedia/ui/less"]
          :target-path "resources/public/css"}
