@@ -7,11 +7,11 @@
   :dependencies [[org.clojure/clojure "1.7.0"]
                  [org.clojure/clojurescript "1.7.145"]
                  [org.clojure/core.async "0.1.346.0-17112a-alpha"]
-                 [reagent "0.5.1" :exclusions [cljsjs/react]]
                  [cljsjs/react-with-addons "0.13.3-0"]
+                 [reagent "0.5.0" :exclusions [cljsjs/react]]
                  [secretary "1.2.3"]
                  [cljs-http "0.1.37"]
-                 [devcards "0.2.0-3"]]
+                 [devcards "0.2.0-3" :exclusions [cljsjs/react]]]
 
   :plugins [[lein-cljsbuild "1.1.0"]
             [lein-figwheel "0.4.1"]]
