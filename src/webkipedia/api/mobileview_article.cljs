@@ -1,5 +1,5 @@
 (ns webkipedia.api.mobileview-article
-  (:require [webkipedia.api.core :refer [fetch-with-transform to-props hosts]]
+  (:require [webkipedia.api.core :refer [fetch-with-transform to-props]]
             [cljs.core.async :refer [map]]
             [clojure.string :refer [replace]]
             [cljs-http.client :as http]
