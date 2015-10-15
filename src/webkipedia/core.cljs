@@ -8,9 +8,10 @@
 
 (enable-console-print!)
 
+
 (defn render! []
-  (reagent/render-component [webkipedia]
-                            (.-body js/document)))
+  (if-let [node (.getElementById js/document "app")]
+    (reagent/render-component [webkipedia] node)))
 
 (.initializeTouchEvents js/React true)
 (db/init!)
