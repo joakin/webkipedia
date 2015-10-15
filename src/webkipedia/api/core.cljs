@@ -5,8 +5,8 @@
             [clojure.string :refer [join]]))
 
 (def hosts
-  {:en "http://en.wikipedia.org/w/api.php"
-   :en-restbase "https://en.wikipedia.org/api/rest_v1/page/html/"})
+  {:en {:php "http://en.wikipedia.org/w/api.php"
+        :restbase "https://en.wikipedia.org/api/rest_v1/page/html/"}})
 
 (def host :en)
 
@@ -15,7 +15,7 @@
    :timeout 10000})
 
 (defn fetch-jsonp [data]
-  (http/jsonp (host hosts)
+  (http/jsonp (get-in hosts [host :php])
               (merge-with merge
                           {:query-params data}
                           default-params)))
