@@ -1,0 +1,60 @@
+@import "./mixins";
+
+.ParsoidPage {
+  .ParsoidPage-content {
+    img { max-width: 100%; height: auto; }
+    .hatnote {
+      font-size: 40%;
+      font-style: italic;
+      color: lightgray;
+    }
+    >table {
+      width: auto !important;
+      max-width: 100%;
+      overflow-x: auto;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      * {
+        white-space: normal !important;
+      }
+    }
+    table {
+      th { background-color: #f8f8f8; }
+      th, td {
+        padding: 0.2em 0.5em;
+        font-size: 75%;
+        .larger-than-phablet({
+          font-size: 90%;
+        });
+        .larger-than-desktop({
+          font-size: 100%;
+        });
+      }
+    }
+    figure[typeof*='mw:Image'] {
+      display: table;
+      margin-left: 0; margin-right: 0;
+      width: 100%;
+      text-align: center;
+      .larger-than-tablet({
+        overflow: auto;
+        &.mw-halign-right {
+          width: auto;
+          clear: right; float: right;
+          margin: 1em 0 1em 1em;
+        }
+        &.mw-halign-left {
+          width: auto;
+          clear: left; float: left;
+          margin: 1em 1em 1em 0;
+        }
+      });
+      figcaption {
+        display: table-caption;
+        caption-side: bottom;
+        font-size: 0.8em;
+      }
+    }
+  }
+}

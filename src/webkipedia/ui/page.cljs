@@ -4,6 +4,7 @@
             [webkipedia.ui.lead-image :refer [lead-image]]
             [webkipedia.ui.loading :refer [loading]]
             [webkipedia.ui.mobileview-page :refer [mobileview-page]]
+            [webkipedia.ui.parsoid-page :refer [parsoid-page]]
             [webkipedia.state.page :as ps]
             ))
 
@@ -17,13 +18,13 @@
         loading? (nil? content)
         thumb (:thumb content)
         image (:image content)
-        description (:description content)
-        extract (:extract content)]
+        description (:description content)]
 
     [:div.Page
      [:div.Page-lead
       (if thumb (lead-image image thumb) nil)
       [page-header {:title title :description description}]]
      (if loading? [loading]
-       [mobileview-page content])
+       #_[mobileview-page content]
+       [parsoid-page content])
      [related-pages (:list related)]]))
