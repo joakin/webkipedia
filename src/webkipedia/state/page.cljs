@@ -4,7 +4,8 @@
 
 (defonce page
   (atom {:title nil
-         :content nil}))
+         :content nil
+         :related nil}))
 
 (defn set-title [page title]
   (assoc page :title title))
