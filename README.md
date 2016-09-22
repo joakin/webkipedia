@@ -1,5 +1,6 @@
 webkipedia
 ==========
+![Project unmaintained](https://img.shields.io/badge/project-unmaintained-red.svg)
 
 An experiment to make a native web application for wikipedia.
 
